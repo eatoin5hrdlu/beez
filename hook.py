@@ -1,6 +1,6 @@
 #!/usr/bin/python
 from __future__ import print_function
-import poplib, time
+import poplib, time, subprocess
 
 userpass = eval(open('secrets','r').read())
 
@@ -32,8 +32,10 @@ while(1) :
         time.sleep(30)
     else :
         lastIP = myIP
-        print("ssh -R 21847:"+myIP+":21847")
-        time.sleep(10)
+    print("LAUNCH: ssh -R 21847:localhost:21847 peter@"+myIP)
+    subprocess.call(["ssh","-R","21847:localhost:21847","peter@"+myIP])
+    print("returned from ssh sesssion")
+    time.sleep(10)
         
 
 
